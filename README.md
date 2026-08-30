@@ -56,3 +56,59 @@ courses-platform/
 ├── assets/       # CSS, JavaScript, and Bootstrap assets
 ├── connect.php   # Database connection and query helper class
 └── index.php     # Public landing page
+```
+
+## Database Overview
+
+The application uses the following main entities:
+
+| Entity | Purpose |
+| --- | --- |
+| `users` | Stores accounts and roles: `student`, `teacher`, and `admin`. |
+| `categories` | Organizes courses by learning topic. |
+| `courses` | Stores course details, prices, images, categories, and teachers. |
+| `lessons` | Stores the lessons that belong to each course. |
+| `enrollments` | Connects students with their enrolled courses. |
+| `progress` | Records completed lessons for each student. |
+| `quizzes` | Stores course quiz questions and answers. |
+| `reviews` | Stores student ratings and comments for courses. |
+
+## Getting Started
+
+1. Install and start **Apache** and **MySQL** using XAMPP.
+2. Place the project inside your XAMPP `htdocs` directory:
+
+   ```text
+   C:/xampp/htdocs/courses-platform
+   ```
+
+3. Create a MySQL database named `courses-platform`.
+4. Create or import the tables required by the application, including `users`, `categories`, `courses`, `lessons`, `enrollments`, `progress`, `quizzes`, and `reviews`.
+5. Check the database settings in `connect.php` and update them if your MySQL credentials differ:
+
+   ```php
+   private const host_name = "localhost";
+   private const user_name = "root";
+   private const password = "";
+   private const db = "courses-platform";
+   ```
+
+6. Open the application in your browser:
+
+   ```text
+   http://localhost/courses-platform/
+   ```
+
+## User Roles
+
+| Role | Main responsibilities |
+| --- | --- |
+| Student | Explore courses, learn lessons, track progress, and take quizzes. |
+| Teacher | Create courses and lessons, and manage their teaching content. |
+| Admin | Manage users, categories, courses, and reviews across the platform. |
+
+## Notes
+
+- Uploaded images are stored in the `upload/` directory.
+- The application uses PHP sessions to keep users signed in and direct them to the appropriate dashboard.
+- Ensure that the web server has write permission for the `upload/` directory when enabling image uploads.
