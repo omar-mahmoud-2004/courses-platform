@@ -1,4 +1,4 @@
-# 🎓 CourseHub — E-Learning Platform
+# 🎓 Course Hub — E-Learning Platform
 
 A role-based e-learning web application designed for interactive online education and seamless course management.
 
