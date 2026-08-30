@@ -1,61 +1,113 @@
-# 🎓 Courses Platform (E-Learning Management System)
+# CourseHub — E-Learning Platform
 
-A full-featured E-Learning Web Application built with **PHP (OOP)**, **MySQL**, and **Bootstrap 5**. The platform provides dedicated dashboards and workflows for **Admins**, **Instructors**, and **Students**.
+CourseHub is a role-based e-learning web application that helps students discover courses, follow lessons, and monitor their learning progress. Teachers can create and manage course content, while administrators oversee users, categories, courses, and reviews from a dedicated dashboard.
 
----
+The project is built with PHP and MySQL and is designed to run locally with XAMPP.
 
-## 🚀 Key Features
+## Features
 
-### 🛠️ Admin Panel
-* **Analytics Dashboard:** Real-time metrics for total revenue, active users, published courses, and categories.
-* **User Management:** View all registered accounts, modify user roles (`student`, `teacher`, `admin`), and delete accounts with real-time search filtering.
-* **Category Management:** Create, update (via modal), and delete course categories with live course count badges.
-* **Course Moderation:** Monitor courses, instructors, prices, lessons, and student enrollments with direct preview links.
-* **Review Moderation:** Track student feedback, star ratings, and delete inappropriate reviews.
+### For students
 
-### 👨‍🎓 Student Portal
-* **Student Dashboard:** Track enrolled courses, completed lessons, overall learning progress, and registered tracks.
-* **Course Player & Lesson Tracker:** Interactive course viewer with progress tracking and a "Mark as Completed" feature.
-* **Quiz & Assessment Engine:** Dynamic quiz taking with instant evaluation, score calculation, and percentage breakdown.
-* **Profile Management:** Update personal information, email validation, and secure password updates.
+- Create an account and sign in to a personal dashboard.
+- Browse course categories and explore available courses.
+- Enroll in courses and access their lessons.
+- Mark lessons as completed and view learning progress.
+- Take course quizzes and receive an instant score.
+- View and update profile information.
 
-### 🔒 Core Architecture & Security
-* **Object-Oriented Database Layer:** Reusable `connect` class handling CRUD operations (`insert`, `update`, `delete`, `select`, `customQuery`) using `mysqli`.
-* **Role-Based Access Control (RBAC):** Session-driven route protection preventing unauthorized access across roles.
-* **Relational Database Design:** Foreign key constraints with `ON DELETE CASCADE` across 9 core tables.
+### For teachers
 
----
+- Access a teacher dashboard with course and student statistics.
+- Create, edit, and manage their own courses.
+- Upload course images.
+- Add, edit, order, and remove lessons.
+- View the courses they have created and their enrolled students.
 
-## 🛠️ Tech Stack
+### For administrators
 
-* **Backend:** PHP 8.x (OOP Paradigm)
-* **Database:** MySQL / MariaDB
-* **Frontend:** HTML5, CSS3, JavaScript (Vanilla ES6)
-* **UI Framework:** Bootstrap 5 & Bootstrap Icons / Font Awesome
-* **Environment:** Apache / XAMPP
+- View platform-wide statistics from the admin dashboard.
+- Manage user accounts and roles.
+- Create and manage course categories.
+- Review and manage all courses.
+- Moderate student reviews and ratings.
 
----
+## Technology Stack
 
-## 🗄️ Database Schema
+- **Backend:** PHP
+- **Database:** MySQL / MariaDB
+- **Frontend:** HTML5, CSS3, JavaScript
+- **UI:** Bootstrap 5, Bootstrap Icons, and Font Awesome
+- **Local server:** Apache through XAMPP
 
-The database consists of **9 relational tables**:
+## Project Structure
 
-| Table | Description |
-| :--- | :--- |
-| `users` | Stores user credentials, profile data, and roles (`admin`, `teacher`, `student`). |
-| `categories` | Course tracks and specialties. |
-| `courses` | Course details, pricing, cover images, teacher links, and category relations. |
-| `lessons` | Course content, lesson titles, body text, and sequencing. |
-| `enrollments` | Student course registrations. |
-| `progress` | Lesson completion tracking per student. |
-| `quizzes` | Assessment questions and correct answers linked to courses. |
-| `answers` | Student submissions and multiple-choice options. |
-| `reviews` | Student ratings (1 to 5 stars) and comments for courses. |
+```text
+courses-platform/
+├── admin/        # Admin dashboard and management pages
+├── auth/         # Registration, login, and logout
+├── categories/   # Course category pages
+├── courses/      # Course creation, listing, and editing
+├── lessons/      # Lesson management
+├── student/      # Student dashboard, course player, quizzes, and profile
+├── teacher/      # Teacher dashboard and student overview
+├── progress/     # Lesson-completion tracking
+├── upload/       # Uploaded course and category images
+├── assets/       # CSS, JavaScript, and Bootstrap assets
+├── connect.php   # Database connection and query helper class
+└── index.php     # Public landing page
+```
 
----
+## Database Overview
 
-## ⚙️ Installation & Setup
+The application uses the following main entities:
 
-1. **Clone the Repository:**
-   ```bash
-   git clone [https://github.com/omar-mahmoud-2004/courses-platform.git](https://github.com/omar-mahmoud-2004/courses-platform.git)
+| Entity | Purpose |
+| --- | --- |
+| `users` | Stores accounts and roles: `student`, `teacher`, and `admin`. |
+| `categories` | Organizes courses by learning topic. |
+| `courses` | Stores course details, prices, images, categories, and teachers. |
+| `lessons` | Stores the lessons that belong to each course. |
+| `enrollments` | Connects students with their enrolled courses. |
+| `progress` | Records completed lessons for each student. |
+| `quizzes` | Stores course quiz questions and answers. |
+| `reviews` | Stores student ratings and comments for courses. |
+
+## Getting Started
+
+1. Install and start **Apache** and **MySQL** using XAMPP.
+2. Place the project inside your XAMPP `htdocs` directory:
+
+   ```text
+   C:/xampp/htdocs/courses-platform
+   ```
+
+3. Create a MySQL database named `courses-platform`.
+4. Create or import the tables required by the application, including `users`, `categories`, `courses`, `lessons`, `enrollments`, `progress`, `quizzes`, and `reviews`.
+5. Check the database settings in `connect.php` and update them if your MySQL credentials differ:
+
+   ```php
+   private const host_name = "localhost";
+   private const user_name = "root";
+   private const password = "";
+   private const db = "courses-platform";
+   ```
+
+6. Open the application in your browser:
+
+   ```text
+   http://localhost/courses-platform/
+   ```
+
+## User Roles
+
+| Role | Main responsibilities |
+| --- | --- |
+| Student | Explore courses, learn lessons, track progress, and take quizzes. |
+| Teacher | Create courses and lessons, and manage their teaching content. |
+| Admin | Manage users, categories, courses, and reviews across the platform. |
+
+## Notes
+
+- Uploaded images are stored in the `upload/` directory.
+- The application uses PHP sessions to keep users signed in and direct them to the appropriate dashboard.
+- Ensure that the web server has write permission for the `upload/` directory when enabling image uploads.
